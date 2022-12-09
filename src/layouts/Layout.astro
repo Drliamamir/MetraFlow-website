@@ -1,0 +1,53 @@
+---
+import '@fontsource/montserrat';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/400.css';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+
+const montserrat:string = "Montserrat, serif"
+const poppins:string = "Poppins, sans-serif;"
+
+const headingSize:string = '32px';
+const bodySize:string = '16px';
+const inputSize:string = '16px';
+const secondSize:string = '14px';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+<style is:global lang="css" define:vars={{
+	poppins,
+	montserrat,
+	headingSize,
+	bodySize,
+	inputSize,
+	secondSize
+	}}>
+	
+	* {
+		padding: 0;
+		margin: 0;
+	}
+
+	body {
+		background-color: white;
+		font-family: var(--poppins);
+		font-weight: 400;
+	}
+</style>
