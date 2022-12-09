@@ -5,7 +5,7 @@ export interface Props {
 
 const { logo } = Astro.props;
 
-const headingSize = '32px'
+const headingSize:string = '32px'
 ---
 
 <header class="navbar">
@@ -20,7 +20,7 @@ const headingSize = '32px'
     </div>
 </header>
 
-<style lang="scss">
+<style lang="scss" define:vars={{headingSize}}>
 
     .navbar {
         width: 100% !important;
@@ -32,7 +32,7 @@ const headingSize = '32px'
             padding: 20px 20px;
 
             .logo {
-                font-size: $heading;
+                font-size: var(--headingSize);
                 font-weight: 600;
             }
 
