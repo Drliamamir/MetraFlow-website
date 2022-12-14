@@ -1,0 +1,53 @@
+---
+const montserrat:string = "Montserrat, serif"
+const poppins:string = "Poppins, sans-serif;"
+
+const bigSize:string = '24px';
+const midSize:string = '18px';
+const smallSize:string = '16px';
+const secondSize:string = '14px';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MetraFlow - Error</title>
+</head>
+<body>
+    <slot />
+</body>
+</html>
+
+
+<style is:global lang="css" define:vars={{
+	poppins,
+	montserrat,
+	bigSize,
+	midSize,
+	smallSize,
+	secondSize
+	}}>
+	
+	* {
+		padding: 0;
+		margin: 0;
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background-color: rgb(245, 245, 245);
+		font-family: var(--poppins);
+		font-weight: 400;
+		font-size: var(--midSize);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+	}
+	a {
+		text-decoration: none;
+	}
+</style>

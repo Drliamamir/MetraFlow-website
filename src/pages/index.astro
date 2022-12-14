@@ -1,8 +1,45 @@
 ---
 import Navbar from '../components/Navbar.astro';
+import Posts from '../components/PostCard/PostCard';
+import SecondNavbar from '../components/SecondNavbar.astro';
 import Layout from '../layouts/Layout.astro';
+
+const posts = await fetch(import.meta.env.PUBLIC_SITE_API)
+	.then((res) => res.json())
 ---
 
-<Layout title="MetraFlow">
-	<Navbar logo="MetraFlow"></Navbar>
+<Layout title="MetraFlow - Home">
+	<div class="container">
+        <div class="form">
+            <SecondNavbar />
+            <Posts posts={posts} />
+        </div>
+    </div>
+    <Navbar />
 </Layout>
+
+
+
+<style lang="scss">
+    .container{
+        display: flex;
+        justify-content: center;
+        .form {
+        width: 1200px;
+        min-width: 980px;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+		box-sizing: border-box;
+
+		@media (max-width: 768px) {
+			justify-content: center;
+			flex-direction: column;
+			padding: 0;
+            width: 100%;
+            min-width: 300px;
+        }
+	}
+    }
+	
+</style>

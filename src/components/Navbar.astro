@@ -1,51 +1,52 @@
 ---
-export interface Props {
-    logo: string
-}
-
-const { logo } = Astro.props;
-
-const headingSize:string = '32px'
+import logo from '../images/logo.svg'
 ---
 
 <header class="navbar">
     <div class="container">
-        <h2 class="logo">{ logo }</h2>
-
-        <ul class="nav-items">
-            <li class="nav-item">
-                <a href="">Home</a>
-            </li>
-        </ul>
+        <img src={logo} width="50" alt="#logo" srcset="sorry mochco">
+        <a href="#">Add post</a>
     </div>
 </header>
 
-<style lang="scss" define:vars={{headingSize}}>
-
+<style lang="scss">
     .navbar {
-        width: 100% !important;
+        width: 100%;
+        height: 100px;
+        position: fixed;
+        bottom: 0;
+        background-color: white;
+        border-top: 1px solid rgba(0,0,0,0.1);
+        display: flex;
+        justify-content: center;
         
+        @media (max-width: 768px) {
+            height: 80px;
+            border: none;
+        }
         .container {
-            display: flex !important;
-            align-items: center !important;
-            justify-content: space-between !important;
-            padding: 20px 20px;
-
-            .logo {
-                font-size: var(--headingSize);
-                font-weight: 600;
+            display: flex;
+            align-items: center;
+            width: 1200px;
+            min-width: 980px;
+            justify-content: space-between;
+            @media (max-width: 768px) {
+                width: calc(100% - 40px);
+                min-width: 300px;
             }
+            .logo {
+                font-weight: 600;
+                font-size: var(--bigSize);
+            }
+            a {
+                background-color: black;
+                color: white;
+                padding: 10px 20px;
+                font-size: var(--midSize);
+                border-radius: 5px;
 
-            .nav-items {
-                list-style: none;
-
-                .nav-item {
-                    display: flex !important;
-
-                    a {
-                        color: black;
-                        text-decoration: none;
-                    }
+                &:hover {
+                    scale: 1.01;
                 }
             }
         }

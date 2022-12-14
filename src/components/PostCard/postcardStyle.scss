@@ -1,0 +1,61 @@
+.postWarpper {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: calc(100vh - 100px);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0 40px;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    
+    @media (max-width: 768px) {
+        height: calc(100vh - 80px);
+        padding: 0;
+        border: none;
+    }
+    .postCard {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - 200px);
+        border-radius: 20px;
+        margin: 100px 0;
+        scroll-snap-align: center;
+        box-sizing: border-box;
+        background-size: 100% 100%;
+        @media (max-width: 768px) {
+            height: calc(100vh - 160px);
+            scroll-snap-align: start;
+            margin: 0;
+            border-radius: 0;
+            border: none;
+        }
+        div {
+            max-width: calc(100% - 20px);
+            position: absolute;
+            padding: 0 40px;
+            bottom: 120px;
+            @media (max-width: 768px) {
+                bottom: 120px;
+                left: 10px;
+            }
+            .postCardTitle {
+                font-size: 2rem;
+                font-weight: 600;
+                color: white;
+            }
+            .postCardBody {
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 1.3rem;
+                font-weight: 200;
+            }
+        }
+        button {
+            position: absolute;
+            background: none;
+            border: none;
+            bottom: 40px;
+            right: 40px;
+        }
+    }
+}

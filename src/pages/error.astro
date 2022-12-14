@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon";
+import ErrorLayout from "../layouts/ErrorLayout.astro";
+---
+
+<ErrorLayout>
+    <div class="errorCard">
+        <div>
+            <Icon name='tabler:heart-rate-monitor' size={100} />
+        </div>
+        <div class="textGroup">
+            <h1>We found some error</h1>
+            
+        </div>
+    </div>
+</ErrorLayout>
+
+<style lang="scss">
+    .errorCard {
+        width: 700px;
+        height: 500px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        border: 1px solid black;
+        box-shadow: 0 0 80px 10px rgba(0, 0, 0, 0.1);
+
+        div {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0px;
+        }
+        .textGroup {
+            flex-direction: column;
+            text-align: center;
+
+            h1 {
+                font-weight: 600;
+            }
+
+            h2 {
+                font-weight: 400;
+            }
+        }
+
+    }
+</style>

@@ -1,7 +1,11 @@
 ---
 import '@fontsource/montserrat';
 import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/500.css';
 import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/200.css';
+import logo from '../images/logo.svg'
 
 export interface Props {
 	title: string;
@@ -11,19 +15,18 @@ const { title } = Astro.props;
 
 const montserrat:string = "Montserrat, serif"
 const poppins:string = "Poppins, sans-serif;"
-
-const headingSize:string = '32px';
-const bodySize:string = '16px';
-const inputSize:string = '16px';
-const secondSize:string = '14px';
+const bigSize:string = '1.6rem';
+const midSize:string = '1rem';
+const smallSize:string = '0.8rem';
+const miniSize:string = '0.6rem';
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href={logo} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
@@ -31,23 +34,34 @@ const secondSize:string = '14px';
 		<slot />
 	</body>
 </html>
+
 <style is:global lang="css" define:vars={{
 	poppins,
 	montserrat,
-	headingSize,
-	bodySize,
-	inputSize,
-	secondSize
+	bigSize,
+	midSize,
+	smallSize,
+	miniSize
 	}}>
 	
 	* {
 		padding: 0;
 		margin: 0;
+		scroll-behavior: smooth;
+
 	}
 
 	body {
 		background-color: white;
 		font-family: var(--poppins);
 		font-weight: 400;
+		font-size: var(--midSize);
+	}
+	a {
+		text-decoration: none;
+	}
+
+	section {
+		height: 100vh;
 	}
 </style>

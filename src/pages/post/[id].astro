@@ -1,0 +1,153 @@
+---
+import { Icon } from "astro-icon";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts:any = await fetch(import.meta.env.PUBLIC_SITE_API).then(response => response.json());
+
+  return posts.map((post:any) => {
+    return {
+      params: { id: post.id },
+      props: { post },
+    };
+  });
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+
+---
+
+<Layout title={`MetraFlow - Post [${ id }]`}>
+    <section id={id} class="postWarpper">
+        <div class="goBackButton">
+            <a href="/">
+                <Icon name='tabler:arrow-back-up' size={32}/>
+            </a>
+        </div>
+        <div class="post__card" style={{ backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%), url('${post.url}')`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
+            <button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="none" stroke="white" stroke-linecap="round" stroke-line-join="round" stroke-width="2" d="m13 19l-1 1l-7.5-7.428A5 5 0 1 1 12 6.006a5 5 0 0 1 8.003 5.996M14 16h6m-3-3v6"/></svg>
+            </button>
+            <div>
+                <h1 class="post__card__title">
+                    {
+                        (post.title).length >= 64 ?
+                        (post.title).substring(0, 64)+'...'
+                        :
+                        post.title
+                    }
+                </h1>
+                <h2 class="post__card__body">
+                    {
+                        (post.title).length >= 100 ?
+                        (post.title).substring(0, 100)+'...'
+                        :
+                        post.title
+                    }
+                </h2>
+            </div>
+            <div class="comments_section">
+                
+            </div>
+        </div>
+        <div class="input__box">
+            <input type="text" placeholder="Add your comment" />
+            <button onclick={`addPost(${post.id})`}>Send</button>
+        </div>
+    </section>
+</Layout>
+
+
+
+<style lang="scss">
+    .postWarpper {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        align-items: center;
+        .goBackButton{
+            width: 900px;
+            margin: 20px 0;
+            a {
+                color: #000000;
+            }
+        }
+
+        .post__card {
+            position: relative;
+            display: flex !important;
+            width: 900px;
+            height: 550px;
+            border-radius: 20px;
+            border: 1px solid #000000;
+            overflow-y: scroll;
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+
+            button {
+                position: absolute;
+                right: 20px;
+                top: 20px;
+                background: none;
+                border: none;
+            }
+            div {
+                position: absolute !important;
+                max-width: calc(100% - 20px);
+                padding: 0 40px;
+                bottom: 40px;
+                .post__card__title {
+                    font-size: 2rem;
+                    font-weight: 600;
+                    color: white;
+                }
+                .post__card__body {
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 1.3rem;
+                    font-weight: 200;
+                }
+            }
+        }
+        .input__box {
+            display: flex !important;
+            width: 900px;
+            height: 60px;
+            margin-top: 20px;
+            border: 1px solid rgb(0, 0, 0);
+            justify-content: space-between;
+            border-radius: 10px;
+            overflow: hidden;
+
+            input {
+                border: none;
+                outline: none;
+                width: 100%;
+                height: 100%;
+                font-size: 1.2rem;
+                font-weight: 200;
+                font-family: 'Poppins', sans-serif;
+                padding: 0 30px;
+            }
+
+            button {
+                width: 250px;
+                background-color: #000000;
+                border: none;
+                color: white;
+                font-size: 1.6rem;
+                font-weight: 400;
+                font-family: 'Poppins', sans-serif;
+                transition: 1s;
+            }
+        }
+        .comments_section {
+            width: 100%;
+            overflow-y: scroll;
+
+        }
+    }
+    
+</style>

@@ -1,0 +1,72 @@
+---
+import { Icon } from 'astro-icon'
+
+var user:boolean = true
+---
+
+
+<div class="second_navbar">
+    <ul class="nav_items">
+        <li>
+            <Icon name='tabler:home' size={32}/>
+            <a href="">Home</a>
+        </li>
+        <li>
+            <Icon name='tabler:message' size={32}/>
+            <a href="">Message</a>
+        </li>
+        {   
+            user ?
+            <li>
+                <Icon name='tabler:user' size={32}/>
+                <a href="">Profile</a>
+            </li>
+            :
+            null
+        }
+    </ul>
+</div>
+
+<style lang="scss">
+    .second_navbar {
+		width: 400px;
+        height: 100vh;
+		display: flex;
+		align-items: center;
+        padding-right: 40px;
+        @media (max-width: 768px) {
+            width: 100%;
+            height: 80px;
+            justify-content: center;
+            padding: 0;
+        }
+
+		.nav_items {
+            display: flex;
+            flex-direction: column;
+			list-style: none;
+            gap: 20px;
+            @media (max-width: 768px) {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+			li {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                @media (max-width: 768px) {
+                    gap: 2px;
+                }
+                a {
+                    font-size: var(--bigSize);
+				    color: black;
+                    @media (max-width: 768px) { 
+                        font-size: var(--midSize);
+                    }
+			    }
+            }
+		}
+	}
+</style>
